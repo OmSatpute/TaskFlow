@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f4"><title>TaskFlow — Make space for what matters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/"><span class="brand-mark">t</span> taskflow</a><div class="topbar-tools"><div class="account-chip"><strong id="accountName"></strong><span id="profileLabel"></span></div><button id="logoutButton" class="text-button" type="button">Log out</button><span class="today" id="today"></span></div></header>
+  <main class="shell">
+    <section class="welcome"><div><p class="eyebrow" id="workspaceLabel">PERSONAL WORKSPACE</p><h1>Make space for<br><span>what matters.</span></h1><p class="subhead" id="workspaceIntro">A little clarity goes a long way. What would you like to move forward today?</p></div><div class="welcome-art" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="spark">✳</span></div></section>
+    <section class="stats" aria-label="Task overview">
+      <article class="stat"><span class="stat-icon all-icon">◷</span><span class="stat-label">All tasks</span><strong id="total">—</strong></article>
+      <article class="stat"><span class="stat-icon active-icon">↗</span><span class="stat-label">In progress</span><strong id="inProgress">—</strong></article>
+      <article class="stat"><span class="stat-icon done-icon">✓</span><span class="stat-label">Completed</span><strong id="completed">—</strong></article>
+      <article class="stat attention"><span class="stat-icon due-icon">!</span><span class="stat-label">Needs attention</span><strong id="attention">—</strong><small id="attentionNote">overdue or due today</small></article>
+    </section>
+    <div class="content-grid">
+      <section class="tasks-panel"><div class="section-head"><div><p class="eyebrow">STAY ON TRACK</p><h2>Your tasks</h2></div></div>
+        <div class="filters"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a task…" aria-label="Search tasks"></label><select id="statusFilter" aria-label="Filter by status"><option value="">Every status</option><option value="PENDING">Pending</option><option value="IN_PROGRESS">In progress</option><option value="COMPLETED">Completed</option></select><select id="priorityFilter" aria-label="Filter by priority"><option value="">Every priority</option><option value="HIGH">High priority</option><option value="MEDIUM">Medium priority</option><option value="LOW">Low priority</option></select></div>
+        <div id="taskList" class="task-list" aria-live="polite"></div>
+      </section>
+      <aside class="form-panel" id="formPanel"><div class="form-heading"><span class="form-glyph">✳</span><div><p class="eyebrow" id="formEyebrow">A FRESH START</p><h2 id="formTitle">Create a task</h2></div></div>
+        <form id="taskForm"><input type="hidden" id="taskId"><label>What needs doing?<input id="title" maxlength="120" required placeholder="e.g. Plan the week ahead"></label><label>A few details <span class="optional">OPTIONAL</span><textarea id="description" maxlength="2000" rows="3" placeholder="Add a note or some context…"></textarea></label><div class="form-row"><label>Priority<select id="priority"><option value="MEDIUM">Medium</option><option value="HIGH">High</option><option value="LOW">Low</option></select></label><label>Status<select id="status"><option value="PENDING">Pending</option><option value="IN_PROGRESS">In progress</option><option value="COMPLETED">Completed</option></select></label></div><label>Category <span class="optional">OPTIONAL</span><select id="categoryId"><option value="">No category</option></select></label><label>Deadline <span class="optional">OPTIONAL</span><input id="deadline" type="datetime-local" step="60"></label><p id="formError" class="error" role="alert"></p><div class="form-actions"><button class="primary submit" type="submit" id="saveButton">Add task <span>→</span></button><button class="text-button hidden" type="button" id="cancelEdit">Cancel</button></div></form>
+        <section class="focus-note tips-box"><span>✦</span><div><strong>Tips for your task list</strong><ul id="tipList"><li>Use priorities and deadlines to plan your next step.</li></ul></div></section>
+        <details class="category-tools"><summary>Manage categories</summary><form id="categoryForm"><label>Domain<input id="categoryDomain" maxlength="60" placeholder="e.g. Creative work" required></label><label>Category name<input id="categoryName" maxlength="80" placeholder="e.g. Design" required></label><p id="categoryError" class="error" role="alert"></p><button class="secondary" type="submit">Add category</button></form></details>
+      </aside>
+    </div>
+    <details class="report-tools"><summary>Generate a task report</summary><div class="report-content"><p>Download a CSV report with task details and completion counts. Optionally filter by deadline date.</p><label>Deadline from<input id="reportFrom" type="date"></label><label>Deadline to<input id="reportTo" type="date"></label><button id="downloadReport" class="primary" type="button">Download CSV report</button><p id="reportError" class="error" role="alert"></p></div></details>
+    <footer>Made for your everyday, your way.</footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
